@@ -1,0 +1,20 @@
+{
+  "name": "jsexpert-challenge06-patterns",
+  "version": "1.0.0",
+  "description": "[challengeguide]: https://github.com/training-erickwendel/jsexpert-challenge-guide/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HalexV/jsexpert-challenge06-patterns.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HalexV/jsexpert-challenge06-patterns/issues"
+  },
+  "homepage": "https://github.com/HalexV/jsexpert-challenge06-patterns#readme"
+}
