@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/HalexV/jsexpert-challenge06-patterns/issues"
   },
-  "homepage": "https://github.com/HalexV/jsexpert-challenge06-patterns#readme"
+  "homepage": "https://github.com/HalexV/jsexpert-challenge06-patterns#readme",
+  "devDependencies": {
+    "typescript": "^4.8.2"
+  }
 }
