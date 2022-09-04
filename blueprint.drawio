@@ -4,7 +4,7 @@
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="68" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#003333;" vertex="1" parent="1">
+                <mxCell id="68" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#003333;" parent="1" vertex="1">
                     <mxGeometry x="812" y="408" width="644" height="154" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="&lt;h1&gt;Serviço de Envio de Mensagens&lt;/h1&gt;&lt;p dir=&quot;auto&quot; style=&quot;box-sizing: border-box ; margin-top: 0px ; margin-bottom: 16px ; color: rgb(201 , 209 , 217) ; font-family: , &amp;#34;blinkmacsystemfont&amp;#34; , &amp;#34;segoe ui&amp;#34; , &amp;#34;helvetica&amp;#34; , &amp;#34;arial&amp;#34; , sans-serif , &amp;#34;apple color emoji&amp;#34; , &amp;#34;segoe ui emoji&amp;#34; ; font-size: 16px ; background-color: rgb(13 , 17 , 23)&quot;&gt;Uma empresa específica necessita disponibilizar a aquisição e o uso de diferentes tipos de créditos para envios de mensagens. Os créditos podem ser divididos em:&amp;nbsp;&lt;code style=&quot;box-sizing: border-box ; font-family: , , &amp;#34;sf mono&amp;#34; , &amp;#34;menlo&amp;#34; , &amp;#34;consolas&amp;#34; , &amp;#34;liberation mono&amp;#34; , monospace ; font-size: 13.6px ; padding: 0.2em 0.4em ; margin: 0px ; border-radius: 6px&quot;&gt;e-mail&lt;/code&gt;,&amp;nbsp;&lt;code style=&quot;box-sizing: border-box ; font-family: , , &amp;#34;sf mono&amp;#34; , &amp;#34;menlo&amp;#34; , &amp;#34;consolas&amp;#34; , &amp;#34;liberation mono&amp;#34; , monospace ; font-size: 13.6px ; padding: 0.2em 0.4em ; margin: 0px ; border-radius: 6px&quot;&gt;sms&lt;/code&gt;&amp;nbsp;e&amp;nbsp;&lt;code style=&quot;box-sizing: border-box ; font-family: , , &amp;#34;sf mono&amp;#34; , &amp;#34;menlo&amp;#34; , &amp;#34;consolas&amp;#34; , &amp;#34;liberation mono&amp;#34; , monospace ; font-size: 13.6px ; padding: 0.2em 0.4em ; margin: 0px ; border-radius: 6px&quot;&gt;whatsapp&lt;/code&gt;.&lt;/p&gt;&lt;p dir=&quot;auto&quot; style=&quot;box-sizing: border-box ; margin-top: 0px ; margin-bottom: 16px ; color: rgb(201 , 209 , 217) ; font-family: , &amp;#34;blinkmacsystemfont&amp;#34; , &amp;#34;segoe ui&amp;#34; , &amp;#34;helvetica&amp;#34; , &amp;#34;arial&amp;#34; , sans-serif , &amp;#34;apple color emoji&amp;#34; , &amp;#34;segoe ui emoji&amp;#34; ; font-size: 16px ; background-color: rgb(13 , 17 , 23)&quot;&gt;Cada tipo de crédito representará quantas mensagens o usuário poderá enviar na plataforma em questão. Exemplo: 1 crédito de&amp;nbsp;&lt;code style=&quot;box-sizing: border-box ; font-family: , , &amp;#34;sf mono&amp;#34; , &amp;#34;menlo&amp;#34; , &amp;#34;consolas&amp;#34; , &amp;#34;liberation mono&amp;#34; , monospace ; font-size: 13.6px ; padding: 0.2em 0.4em ; margin: 0px ; border-radius: 6px&quot;&gt;e-mail&lt;/code&gt;&amp;nbsp;permite que o usuário envie 1 mensagem via e-mail para qualquer destinatário.&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
@@ -137,16 +137,16 @@
                     <mxGeometry x="869" y="437" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="52" value="Users" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="1037" y="804" width="160" height="120" as="geometry"/>
+                    <mxGeometry x="1037" y="781" width="160" height="143" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" value="+name&#10;+email&#10;+password" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="52" vertex="1">
-                    <mxGeometry y="30" width="160" height="90" as="geometry"/>
+                <mxCell id="53" value="+id&#10;+name&#10;+email&#10;+password&#10;+createdAt&#10;+updatedAt" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="52" vertex="1">
+                    <mxGeometry y="30" width="160" height="113" as="geometry"/>
                 </mxCell>
                 <mxCell id="54" value="Credits" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="908" y="1072" width="160" height="120" as="geometry"/>
+                    <mxGeometry x="908" y="1072" width="160" height="146" as="geometry"/>
                 </mxCell>
-                <mxCell id="55" value="+email&#10;+sms&#10;+whatsapp" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="54" vertex="1">
-                    <mxGeometry y="30" width="160" height="90" as="geometry"/>
+                <mxCell id="55" value="+id&#10;+email&#10;+sms&#10;+whatsapp&#10;+createdAt&#10;+updatedAt" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="54" vertex="1">
+                    <mxGeometry y="30" width="160" height="116" as="geometry"/>
                 </mxCell>
                 <mxCell id="56" value="" style="fontSize=12;html=1;endArrow=ERmandOne;startArrow=ERmandOne;" parent="1" source="54" target="53" edge="1">
                     <mxGeometry width="100" height="100" relative="1" as="geometry">
@@ -155,10 +155,10 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="63" value="Messages" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="1166" y="1072" width="160" height="120" as="geometry"/>
+                    <mxGeometry x="1166" y="1072" width="160" height="138" as="geometry"/>
                 </mxCell>
-                <mxCell id="64" value="+content&#10;+type&#10;+status" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="63" vertex="1">
-                    <mxGeometry y="30" width="160" height="90" as="geometry"/>
+                <mxCell id="64" value="+id&#10;+content&#10;+type&#10;+status&#10;+createdAt&#10;+updatedAt" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="63" vertex="1">
+                    <mxGeometry y="30" width="160" height="108" as="geometry"/>
                 </mxCell>
                 <mxCell id="65" value="" style="fontSize=12;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;" parent="1" source="53" target="63" edge="1">
                     <mxGeometry width="100" height="100" relative="1" as="geometry">
@@ -169,7 +169,7 @@
                 <mxCell id="66" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px&quot;&gt;Data&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1087" y="731.65" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="69" value="&lt;font style=&quot;font-size: 18px&quot;&gt;&lt;b&gt;Serviços Externos&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="69" value="&lt;font style=&quot;font-size: 18px&quot;&gt;&lt;b&gt;Serviços Externos&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1021" y="516" width="231" height="30" as="geometry"/>
                 </mxCell>
             </root>
