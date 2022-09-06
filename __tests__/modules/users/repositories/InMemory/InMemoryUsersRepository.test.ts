@@ -8,5 +8,19 @@ describe('Repositories - InMemoryUsersRepository', () => {
 
       expect(inMemoryUsersRepository).toBeInstanceOf(InMemoryUsersRepository);
     });
+
+    it('should return the same InMemoryUsersRepository on another calls', () => {
+      const inMemoryUsersRepositoryFirstCall =
+        InMemoryUsersRepository.getInstance();
+      const inMemoryUsersRepositorySecondCall =
+        InMemoryUsersRepository.getInstance();
+
+      expect(
+        Object.is(
+          inMemoryUsersRepositoryFirstCall,
+          inMemoryUsersRepositorySecondCall
+        )
+      ).toBeTruthy();
+    });
   });
 });
