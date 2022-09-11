@@ -83,5 +83,14 @@ describe('Repositories - InMemoryUsersRepository', () => {
         );
       });
     });
+
+    it('should return undefined when user does not exist', () => {
+      const inMemoryUsersRepository = InMemoryUsersRepository.getInstance();
+
+      const user = inMemoryUsersRepository.findById('123');
+
+      expect(typeof user).toStrictEqual('undefined');
+      expect(user).toBeFalsy();
+    });
   });
 });
