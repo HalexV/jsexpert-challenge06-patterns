@@ -63,4 +63,25 @@ describe('Repositories - InMemoryUsersRepository', () => {
       });
     });
   });
+
+  describe('findById', () => {
+    it('should find a user by id', () => {
+      const inMemoryUsersRepository = InMemoryUsersRepository.getInstance();
+      const user = inMemoryUsersRepository.create({
+        name: 'Test',
+        email: 'test@test.com',
+        password: '1234',
+      });
+
+      const userId = user.id;
+
+      const userFound = inMemoryUsersRepository.findById(userId) as User;
+
+      Object.keys(user).forEach((property: string) => {
+        expect(user[property as keyof User]).toStrictEqual(
+          userFound[property as keyof User]
+        );
+      });
+    });
+  });
 });
