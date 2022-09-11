@@ -1,38 +1,43 @@
-import { describe, it, expect, jest, afterEach } from '@jest/globals';
+import {
+  describe,
+  it,
+  expect,
+  jest,
+  afterEach,
+  beforeAll,
+} from '@jest/globals';
 import User from '../../../../../src/modules/users/model/User';
 import InMemoryUsersRepository from '../../../../../src/modules/users/repositories/InMemory/InMemoryUsersRepository';
 import crypto from 'crypto';
 
 describe('Repositories - InMemoryUsersRepository', () => {
+  let inMemoryUsersRepository: InMemoryUsersRepository;
+
+  beforeAll(() => {
+    inMemoryUsersRepository = InMemoryUsersRepository.getInstance();
+  });
+
   afterEach(() => {
     jest.useRealTimers();
   });
 
   describe('getInstance', () => {
     it('should return the InMemoryUsersRepository on first call', () => {
-      const inMemoryUsersRepository = InMemoryUsersRepository.getInstance();
-
       expect(inMemoryUsersRepository).toBeInstanceOf(InMemoryUsersRepository);
     });
 
     it('should return the same InMemoryUsersRepository on another calls', () => {
-      const inMemoryUsersRepositoryFirstCall =
-        InMemoryUsersRepository.getInstance();
       const inMemoryUsersRepositorySecondCall =
         InMemoryUsersRepository.getInstance();
 
       expect(
-        Object.is(
-          inMemoryUsersRepositoryFirstCall,
-          inMemoryUsersRepositorySecondCall
-        )
+        Object.is(inMemoryUsersRepository, inMemoryUsersRepositorySecondCall)
       ).toBeTruthy();
     });
   });
 
   describe('create', () => {
     it('should create a user', () => {
-      const inMemoryUsersRepository = InMemoryUsersRepository.getInstance();
       const dateNow = new Date('2022-01-01');
       jest.spyOn(crypto, 'randomUUID').mockReturnValueOnce('1234');
       jest.useFakeTimers({
@@ -66,7 +71,6 @@ describe('Repositories - InMemoryUsersRepository', () => {
 
   describe('findById', () => {
     it('should find a user by id', () => {
-      const inMemoryUsersRepository = InMemoryUsersRepository.getInstance();
       const user = inMemoryUsersRepository.create({
         name: 'Test',
         email: 'test@test.com',
@@ -85,8 +89,6 @@ describe('Repositories - InMemoryUsersRepository', () => {
     });
 
     it('should return undefined when user does not exist', () => {
-      const inMemoryUsersRepository = InMemoryUsersRepository.getInstance();
-
       const user = inMemoryUsersRepository.findById('123');
 
       expect(typeof user).toStrictEqual('undefined');
