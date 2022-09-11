@@ -3,6 +3,7 @@ import ICreateUserDTO from '../../dtos/ICreateUserDTO';
 import IUpdateUserDTO from '../../dtos/IUpdateUserDTO';
 import User from '../../model/User';
 import IUsersRepository from '../IUsersRepository';
+import { randomUUID } from 'crypto';
 
 export default class InMemoryUsersRepository implements IUsersRepository {
   private readonly users: User[];
@@ -22,7 +23,26 @@ export default class InMemoryUsersRepository implements IUsersRepository {
   }
 
   create({ name, email, password }: ICreateUserDTO): User {
-    throw new Error('Not implemented yet');
+    const newUser = new User();
+
+    const date = new Date();
+
+    const data: User = {
+      id: randomUUID({
+        disableEntropyCache: true,
+      }),
+      name,
+      email,
+      password,
+      createdAt: date,
+      updatedAt: date,
+    };
+
+    Object.assign(newUser, data);
+
+    this.users.push(newUser);
+
+    return newUser;
   }
 
   update(id: string, { name, email, password }: IUpdateUserDTO): User {
