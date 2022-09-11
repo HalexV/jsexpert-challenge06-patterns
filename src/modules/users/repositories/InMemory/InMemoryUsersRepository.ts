@@ -50,7 +50,7 @@ export default class InMemoryUsersRepository implements IUsersRepository {
   }
 
   findById(id: string): User | undefined {
-    throw new Error('Not implemented yet');
+    return this.users.find((user) => user.id === id);
   }
 
   delete(id: string): true {
