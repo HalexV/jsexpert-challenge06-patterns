@@ -46,7 +46,32 @@ export default class InMemoryUsersRepository implements IUsersRepository {
   }
 
   update(id: string, { name, email, password }: IUpdateUserDTO): User {
-    throw new Error('Not implemented yet');
+    let updated = false;
+    const user = this.findById(id);
+
+    if (!user) throw new Error('User not found!');
+
+    if (name) {
+      updated = true;
+      user.name = name;
+    }
+
+    if (email) {
+      updated = true;
+      user.email = email;
+    }
+
+    if (password) {
+      updated = true;
+      user.password = password;
+    }
+
+    if (updated) {
+      user.updatedAt = new Date();
+      return user;
+    }
+
+    return user;
   }
 
   findById(id: string): User | undefined {
