@@ -95,4 +95,42 @@ describe('Repositories - InMemoryUsersRepository', () => {
       expect(user).toBeFalsy();
     });
   });
+
+  describe('update', () => {
+    it('should update a user by id', () => {
+      const updateDateMock = new Date('2022-01-01');
+      const user = inMemoryUsersRepository.create({
+        name: 'Test',
+        email: 'test@test.email',
+        password: '1234',
+      });
+
+      jest.useFakeTimers({
+        now: updateDateMock,
+      });
+
+      const updateData = {
+        name: 'Test test',
+        email: 'test1@test.com',
+        password: '4321',
+      };
+
+      const expectedUser: User = {
+        id: user.id,
+        name: updateData.name,
+        email: updateData.email,
+        password: updateData.password,
+        createdAt: user.createdAt,
+        updatedAt: updateDateMock,
+      };
+
+      const updatedUser = inMemoryUsersRepository.update(user.id, updateData);
+
+      Object.keys(updatedUser).forEach((property: string) => {
+        expect(updatedUser[property as keyof User]).toStrictEqual(
+          expectedUser[property as keyof User]
+        );
+      });
+    });
+  });
 });
