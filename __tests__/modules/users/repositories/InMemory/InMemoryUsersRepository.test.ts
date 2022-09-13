@@ -173,4 +173,13 @@ describe('Repositories - InMemoryUsersRepository', () => {
       });
     });
   });
+
+  describe('delete', () => {
+    it('should throw an error when user does not exist', () => {
+      const userId = 'invalid';
+      expect(() => inMemoryUsersRepository.delete(userId)).toThrow(
+        'User not found!'
+      );
+    });
+  });
 });
