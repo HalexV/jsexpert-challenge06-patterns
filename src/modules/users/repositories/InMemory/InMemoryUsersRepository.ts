@@ -83,6 +83,10 @@ export default class InMemoryUsersRepository implements IUsersRepository {
 
     if (!user) throw new Error('User not found!');
 
+    const userIndex = this.users.findIndex((userObj) => userObj.id === user.id);
+
+    this.users.splice(userIndex, 1);
+
     return true;
   }
 }
