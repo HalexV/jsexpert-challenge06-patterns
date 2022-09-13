@@ -132,5 +132,19 @@ describe('Repositories - InMemoryUsersRepository', () => {
         );
       });
     });
+
+    it('should throw an error when user does not exist', () => {
+      const updateData = {
+        name: 'Test test',
+        email: 'test1@test.com',
+        password: '4321',
+      };
+
+      const userId = 'invalid';
+
+      expect(() => inMemoryUsersRepository.update(userId, updateData)).toThrow(
+        'User not found!'
+      );
+    });
   });
 });
