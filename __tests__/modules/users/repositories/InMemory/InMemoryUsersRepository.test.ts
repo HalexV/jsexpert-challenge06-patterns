@@ -181,5 +181,20 @@ describe('Repositories - InMemoryUsersRepository', () => {
         'User not found!'
       );
     });
+
+    it('should delete a user', () => {
+      const user = inMemoryUsersRepository.create({
+        name: 'Test',
+        email: 'test@test.com',
+        password: '1234',
+      });
+
+      const deleteResult = inMemoryUsersRepository.delete(user.id);
+
+      const findResult = inMemoryUsersRepository.findById(user.id);
+
+      expect(deleteResult).toBeTruthy();
+      expect(typeof findResult).toStrictEqual('undefined');
+    });
   });
 });
