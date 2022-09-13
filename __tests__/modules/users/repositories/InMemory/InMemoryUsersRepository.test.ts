@@ -146,5 +146,31 @@ describe('Repositories - InMemoryUsersRepository', () => {
         'User not found!'
       );
     });
+
+    it('should just return the user when update data is empty', () => {
+      const updateData = {};
+
+      const updateDateMock = new Date('2022-01-01');
+      const user = inMemoryUsersRepository.create({
+        name: 'Test',
+        email: 'test@test.email',
+        password: '1234',
+      });
+
+      jest.useFakeTimers({
+        now: updateDateMock,
+      });
+
+      const notUpdatedUser = inMemoryUsersRepository.update(
+        user.id,
+        updateData
+      );
+
+      Object.keys(user).forEach((property: string) => {
+        expect(user[property as keyof User]).toStrictEqual(
+          notUpdatedUser[property as keyof User]
+        );
+      });
+    });
   });
 });
