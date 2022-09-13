@@ -79,6 +79,10 @@ export default class InMemoryUsersRepository implements IUsersRepository {
   }
 
   delete(id: string): true {
-    throw new Error('Not implemented yet');
+    const user = this.findById(id);
+
+    if (!user) throw new Error('User not found!');
+
+    return true;
   }
 }
