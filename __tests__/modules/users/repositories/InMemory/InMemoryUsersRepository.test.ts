@@ -30,9 +30,7 @@ describe('Repositories - InMemoryUsersRepository', () => {
       const inMemoryUsersRepositorySecondCall =
         InMemoryUsersRepository.getInstance();
 
-      expect(
-        Object.is(inMemoryUsersRepository, inMemoryUsersRepositorySecondCall)
-      ).toBeTruthy();
+      expect(inMemoryUsersRepositorySecondCall).toBe(inMemoryUsersRepository);
     });
   });
 
@@ -60,12 +58,7 @@ describe('Repositories - InMemoryUsersRepository', () => {
       });
 
       expect(user).toBeInstanceOf(User);
-
-      Object.keys(user).forEach((property: string) => {
-        expect(user[property as keyof User]).toStrictEqual(
-          expectedUser[property as keyof User]
-        );
-      });
+      expect(user).toEqual(expectedUser);
     });
   });
 
@@ -81,11 +74,7 @@ describe('Repositories - InMemoryUsersRepository', () => {
 
       const userFound = inMemoryUsersRepository.findById(userId) as User;
 
-      Object.keys(user).forEach((property: string) => {
-        expect(user[property as keyof User]).toStrictEqual(
-          userFound[property as keyof User]
-        );
-      });
+      expect(userFound).toEqual(user);
     });
 
     it('should return undefined when user does not exist', () => {
@@ -126,11 +115,7 @@ describe('Repositories - InMemoryUsersRepository', () => {
 
       const updatedUser = inMemoryUsersRepository.update(user.id, updateData);
 
-      Object.keys(updatedUser).forEach((property: string) => {
-        expect(updatedUser[property as keyof User]).toStrictEqual(
-          expectedUser[property as keyof User]
-        );
-      });
+      expect(updatedUser).toEqual(expectedUser);
     });
 
     it('should throw an error when user does not exist', () => {
@@ -166,11 +151,7 @@ describe('Repositories - InMemoryUsersRepository', () => {
         updateData
       );
 
-      Object.keys(user).forEach((property: string) => {
-        expect(user[property as keyof User]).toStrictEqual(
-          notUpdatedUser[property as keyof User]
-        );
-      });
+      expect(notUpdatedUser).toEqual(user);
     });
   });
 
