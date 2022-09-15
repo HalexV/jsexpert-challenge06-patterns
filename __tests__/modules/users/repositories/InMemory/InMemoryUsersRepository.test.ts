@@ -9,6 +9,7 @@ import {
 import User from '../../../../../src/modules/users/model/User';
 import InMemoryUsersRepository from '../../../../../src/modules/users/repositories/InMemory/InMemoryUsersRepository';
 import crypto from 'crypto';
+import UserDataMother from './UserDataMother';
 
 describe('Repositories - InMemoryUsersRepository', () => {
   let inMemoryUsersRepository: InMemoryUsersRepository;
@@ -36,25 +37,19 @@ describe('Repositories - InMemoryUsersRepository', () => {
 
   describe('create', () => {
     it('should create a user', () => {
-      const dateNow = new Date('2022-01-01');
-      jest.spyOn(crypto, 'randomUUID').mockReturnValueOnce('1234');
+      const userData = UserDataMother.valid();
+
+      jest.spyOn(crypto, 'randomUUID').mockReturnValueOnce(userData.id);
       jest.useFakeTimers({
-        now: dateNow,
+        now: userData.createdAt,
       });
 
-      const expectedUser: User = {
-        id: '1234',
-        name: 'Test',
-        email: 'test@test.com',
-        password: '12345',
-        createdAt: dateNow,
-        updatedAt: dateNow,
-      };
+      const expectedUser = userData;
 
       const user = inMemoryUsersRepository.create({
-        name: 'Test',
-        email: 'test@test.com',
-        password: '12345',
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
       });
 
       expect(user).toBeInstanceOf(User);
