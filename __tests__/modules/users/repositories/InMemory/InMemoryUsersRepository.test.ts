@@ -175,4 +175,30 @@ describe('Repositories - InMemoryUsersRepository', () => {
       expect(typeof findResult).toStrictEqual('undefined');
     });
   });
+
+  describe('deleteAll', () => {
+    it('should delete all data', () => {
+      const userData = UserDataMother.valid();
+
+      const user1 = inMemoryUsersRepository.create({
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
+      });
+
+      const user2 = inMemoryUsersRepository.create({
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
+      });
+
+      inMemoryUsersRepository.deleteAll();
+
+      const userNotFound1 = inMemoryUsersRepository.findById(user1.id);
+      const userNotFound2 = inMemoryUsersRepository.findById(user2.id);
+
+      expect(userNotFound1).toBeFalsy();
+      expect(userNotFound2).toBeFalsy();
+    });
+  });
 });
