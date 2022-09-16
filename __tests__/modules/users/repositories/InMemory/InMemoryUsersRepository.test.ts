@@ -59,10 +59,11 @@ describe('Repositories - InMemoryUsersRepository', () => {
 
   describe('findById', () => {
     it('should find a user by id', () => {
+      const userData = UserDataMother.valid();
       const user = inMemoryUsersRepository.create({
-        name: 'Test',
-        email: 'test@test.com',
-        password: '1234',
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
       });
 
       const userId = user.id;
