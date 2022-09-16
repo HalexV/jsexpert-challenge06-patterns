@@ -20,6 +20,7 @@ describe('Repositories - InMemoryUsersRepository', () => {
 
   afterEach(() => {
     jest.useRealTimers();
+    inMemoryUsersRepository.deleteAll();
   });
 
   describe('getInstance', () => {
