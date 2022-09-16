@@ -74,7 +74,8 @@ describe('Repositories - InMemoryUsersRepository', () => {
     });
 
     it('should return undefined when user does not exist', () => {
-      const user = inMemoryUsersRepository.findById('123');
+      const nonexistentId = '987';
+      const user = inMemoryUsersRepository.findById(nonexistentId);
 
       expect(typeof user).toStrictEqual('undefined');
       expect(user).toBeFalsy();
