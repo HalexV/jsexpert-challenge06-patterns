@@ -22,6 +22,12 @@ export default class InMemoryUsersRepository implements IUsersRepository {
     return InMemoryUsersRepository.INSTANCE;
   }
 
+  deleteAll(): void {
+    while (this.users.length !== 0) {
+      this.users.pop();
+    }
+  }
+
   create({ name, email, password }: ICreateUserDTO): User {
     const newUser = new User();
 
