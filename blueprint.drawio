@@ -142,7 +142,7 @@
                 <mxCell id="53" value="+id&#10;+name&#10;+email&#10;+password&#10;+createdAt&#10;+updatedAt" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="52" vertex="1">
                     <mxGeometry y="30" width="160" height="113" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" value="Credits" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
+                <mxCell id="54" value="Wallets" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
                     <mxGeometry x="908" y="1072" width="160" height="146" as="geometry"/>
                 </mxCell>
                 <mxCell id="55" value="+id&#10;+email&#10;+sms&#10;+whatsapp&#10;+createdAt&#10;+updatedAt" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="54" vertex="1">
