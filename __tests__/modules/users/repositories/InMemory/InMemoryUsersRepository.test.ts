@@ -13,9 +13,11 @@ import UserDataMother from './UserDataMother';
 
 describe('Repositories - InMemoryUsersRepository', () => {
   let inMemoryUsersRepository: InMemoryUsersRepository;
+  let updateDateMock: Date;
 
   beforeAll(() => {
     inMemoryUsersRepository = InMemoryUsersRepository.getInstance();
+    updateDateMock = new Date('2022-01-01');
   });
 
   afterEach(() => {
@@ -85,11 +87,12 @@ describe('Repositories - InMemoryUsersRepository', () => {
 
   describe('update', () => {
     it('should update a user by id', () => {
-      const updateDateMock = new Date('2022-01-01');
+      const userData = UserDataMother.valid();
+      const userDataUpdated = UserDataMother.withUpdatedData();
       const user = inMemoryUsersRepository.create({
-        name: 'Test',
-        email: 'test@test.email',
-        password: '1234',
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
       });
 
       jest.useFakeTimers({
@@ -97,9 +100,9 @@ describe('Repositories - InMemoryUsersRepository', () => {
       });
 
       const updateData = {
-        name: 'Test test',
-        email: 'test1@test.com',
-        password: '4321',
+        name: userDataUpdated.name,
+        email: userDataUpdated.email,
+        password: userDataUpdated.password,
       };
 
       const expectedUser: User = {
@@ -117,10 +120,11 @@ describe('Repositories - InMemoryUsersRepository', () => {
     });
 
     it('should throw an error when user does not exist', () => {
+      const userDataUpdated = UserDataMother.withUpdatedData();
       const updateData = {
-        name: 'Test test',
-        email: 'test1@test.com',
-        password: '4321',
+        name: userDataUpdated.name,
+        email: userDataUpdated.email,
+        password: userDataUpdated.password,
       };
 
       const userId = 'invalid';
@@ -131,13 +135,13 @@ describe('Repositories - InMemoryUsersRepository', () => {
     });
 
     it('should just return the user when update data is empty', () => {
+      const userData = UserDataMother.valid();
       const updateData = {};
 
-      const updateDateMock = new Date('2022-01-01');
       const user = inMemoryUsersRepository.create({
-        name: 'Test',
-        email: 'test@test.email',
-        password: '1234',
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
       });
 
       jest.useFakeTimers({
@@ -162,10 +166,11 @@ describe('Repositories - InMemoryUsersRepository', () => {
     });
 
     it('should delete a user', () => {
+      const userData = UserDataMother.valid();
       const user = inMemoryUsersRepository.create({
-        name: 'Test',
-        email: 'test@test.com',
-        password: '1234',
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
       });
 
       const deleteResult = inMemoryUsersRepository.delete(user.id);
