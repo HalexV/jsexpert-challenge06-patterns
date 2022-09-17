@@ -27,6 +27,16 @@ export default class UserDataBuilder {
     return new UserDataBuilder();
   }
 
+  withUpdatedData(): UserDataBuilder {
+    Object.assign(this.userData, {
+      name: 'Test test',
+      email: 'test1@test.com',
+      password: '4321',
+      updateAt: new Date('2022-01-02'),
+    });
+    return this;
+  }
+
   build(): UserData {
     return this.userData;
   }
