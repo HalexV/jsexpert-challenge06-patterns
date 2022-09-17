@@ -8,6 +8,7 @@ describe('Model - Wallet', () => {
 
     const expectedDefaultWallet: Wallet = {
       id: 'no id',
+      userId: 'no userId',
       email: 0,
       sms: 0,
       whatsapp: 0,

@@ -1,5 +1,6 @@
 export default class Wallet {
   id: string;
+  userId: string;
   email: Number;
   sms: Number;
   whatsapp: Number;
@@ -8,6 +9,7 @@ export default class Wallet {
 
   constructor() {
     this.id = 'no id';
+    this.userId = 'no userId';
     this.email = 0;
     this.sms = 0;
     this.whatsapp = 0;
