@@ -1,7 +1,15 @@
-[gitmd]:https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+[gitmd]: https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
 
-# Documentação da arquitetura do projeto 
+# Documentação da arquitetura do projeto
 
-Aqui você deverá documentar quais decisões técnicas tomou no decorrer do projeto, explicando quais design patterns escolheu em cada cenário e por quê. 
+Aqui você deverá documentar quais decisões técnicas tomou no decorrer do projeto, explicando quais design patterns escolheu em cada cenário e por quê.
+
+Arquitetura N-Tiers: Em construção. As responsabilidades até o momento estão separadas em repositories e use cases.
+
+Singleton: Aplicado nos repositories para que eles retornem a mesma instância já criada anteriormente. Com isso, partes diferentes do projeto irão utilizar a mesma fonte de dados toda vez que o repositório for instanciado.
+
+Test Data Builder com Mother Objects: Aplicado nos testes para padronizar os dados utilizados e melhorar a semântica do fluxo de teste.
+
+Fluent API: Apesar de não haver no momento uma fluent api construída por mim, a fluent api de expect do jest é utilizada nos testes.
 
 > Nota do Wells: Se precisar de qualquer ajuda com a formatação desse arquivo MARKDOWN (.md) aqui, dá uma olhada na [documentação oficial do GitHub][gitmd] pra isso que pode ajudar :)
