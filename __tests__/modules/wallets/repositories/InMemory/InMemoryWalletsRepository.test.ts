@@ -14,5 +14,14 @@ describe('Repositories - InMemoryWalletsRepository', () => {
         InMemoryWalletsRepository
       );
     });
+
+    it('should return the same InMemoryWalletsRepository on another calls', () => {
+      const inMemoryWalletsRepositorySecondCall =
+        InMemoryWalletsRepository.getInstance();
+
+      expect(inMemoryWalletsRepositorySecondCall).toBe(
+        inMemoryWalletsRepository
+      );
+    });
   });
 });
