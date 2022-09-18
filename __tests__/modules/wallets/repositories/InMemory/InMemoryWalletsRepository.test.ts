@@ -1,5 +1,9 @@
-import { describe, it, expect, beforeAll } from '@jest/globals';
+import { describe, it, expect, beforeAll, jest } from '@jest/globals';
+import Wallet from '../../../../../src/modules/wallets/model/Wallet';
 import InMemoryWalletsRepository from '../../../../../src/modules/wallets/repositories/InMemory/InMemoryWalletsRepository';
+import WalletDataMother from './WalletDataMother';
+
+import crypto from 'crypto';
 
 describe('Repositories - InMemoryWalletsRepository', () => {
   let inMemoryWalletsRepository: InMemoryWalletsRepository;
@@ -22,6 +26,26 @@ describe('Repositories - InMemoryWalletsRepository', () => {
       expect(inMemoryWalletsRepositorySecondCall).toBe(
         inMemoryWalletsRepository
       );
+    });
+  });
+
+  describe('create', () => {
+    it('should create a wallet', () => {
+      const walletData = WalletDataMother.valid();
+
+      jest.spyOn(crypto, 'randomUUID').mockReturnValueOnce(walletData.id);
+      jest.useFakeTimers({
+        now: walletData.createdAt,
+      });
+
+      const expectedWallet = walletData;
+
+      const wallet = inMemoryWalletsRepository.create({
+        userId: walletData.userId,
+      });
+
+      expect(wallet).toBeInstanceOf(Wallet);
+      expect(wallet).toEqual(expectedWallet);
     });
   });
 });
