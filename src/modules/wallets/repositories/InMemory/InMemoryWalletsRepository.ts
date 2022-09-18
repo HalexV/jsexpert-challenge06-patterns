@@ -4,6 +4,8 @@ import IUpdateWalletDTO from '../../dtos/IUpdateWalletDTO';
 import Wallet from '../../model/Wallet';
 import IWalletsRepository from '../IWalletsRepository';
 
+import { randomUUID } from 'crypto';
+
 export default class InMemoryWalletsRepository implements IWalletsRepository {
   private readonly wallets: Wallet[];
 
@@ -26,7 +28,24 @@ export default class InMemoryWalletsRepository implements IWalletsRepository {
   }
 
   create({ userId }: ICreateWalletDTO): Wallet {
-    throw new Error('Not Implemented');
+    const wallet = new Wallet();
+
+    const date = new Date();
+
+    const data: Partial<Wallet> = {
+      id: randomUUID({
+        disableEntropyCache: true,
+      }),
+      userId,
+      createdAt: date,
+      updatedAt: date,
+    };
+
+    Object.assign(wallet, data);
+
+    this.wallets.push(wallet);
+
+    return wallet;
   }
 
   update(userId: string, { email, sms, whatsapp }: IUpdateWalletDTO): Wallet {
