@@ -29,6 +29,16 @@ export default class WalletDataBuilder {
     return new WalletDataBuilder();
   }
 
+  withUpdatedData(): WalletDataBuilder {
+    Object.assign(this.walletData, {
+      email: 1,
+      sms: 1,
+      whatsapp: 1,
+      updateAt: new Date('2022-01-02'),
+    });
+    return this;
+  }
+
   build(): WalletData {
     return this.walletData;
   }

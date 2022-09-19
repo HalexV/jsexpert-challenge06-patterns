@@ -6,4 +6,8 @@ export default class WalletDataMother {
   static valid(): WalletData {
     return WalletDataBuilder.aWalletData().build();
   }
+
+  static withUpdatedData(): WalletData {
+    return WalletDataBuilder.aWalletData().withUpdatedData().build();
+  }
 }
