@@ -53,7 +53,7 @@ export default class InMemoryWalletsRepository implements IWalletsRepository {
   }
 
   findById(userId: string): Wallet | undefined {
-    throw new Error('Not Implemented');
+    return undefined;
   }
 
   delete(userId: string): true {
