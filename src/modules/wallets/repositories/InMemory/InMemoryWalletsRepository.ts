@@ -24,7 +24,9 @@ export default class InMemoryWalletsRepository implements IWalletsRepository {
   }
 
   deleteAll(): void {
-    throw new Error('Not Implemented');
+    while (this.wallets.length !== 0) {
+      this.wallets.pop();
+    }
   }
 
   create({ userId }: ICreateWalletDTO): Wallet {
@@ -53,7 +55,7 @@ export default class InMemoryWalletsRepository implements IWalletsRepository {
   }
 
   findById(userId: string): Wallet | undefined {
-    return undefined;
+    return this.wallets.find((wallet) => wallet.userId === userId);
   }
 
   delete(userId: string): true {
