@@ -82,4 +82,29 @@ describe('Repositories - InMemoryWalletsRepository', () => {
       expect(wallet).toBeFalsy();
     });
   });
+
+  describe('deleteAll', () => {
+    it('should delete all data', () => {
+      const userIds = ['1234', '4321'];
+      const wallet1 = inMemoryWalletsRepository.create({
+        userId: userIds[0],
+      });
+
+      const wallet2 = inMemoryWalletsRepository.create({
+        userId: userIds[1],
+      });
+
+      inMemoryWalletsRepository.deleteAll();
+
+      const walletNotFound1 = inMemoryWalletsRepository.findById(
+        wallet1.userId
+      );
+      const walletNotFound2 = inMemoryWalletsRepository.findById(
+        wallet2.userId
+      );
+
+      expect(walletNotFound1).toBeFalsy();
+      expect(walletNotFound2).toBeFalsy();
+    });
+  });
 });
