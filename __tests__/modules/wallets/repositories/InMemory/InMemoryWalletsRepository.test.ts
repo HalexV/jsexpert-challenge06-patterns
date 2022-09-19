@@ -14,9 +14,11 @@ import crypto from 'crypto';
 
 describe('Repositories - InMemoryWalletsRepository', () => {
   let inMemoryWalletsRepository: InMemoryWalletsRepository;
+  let updateDateMock: Date;
 
   beforeAll(() => {
     inMemoryWalletsRepository = InMemoryWalletsRepository.getInstance();
+    updateDateMock = new Date('2022-01-01');
   });
 
   afterEach(() => {
@@ -97,6 +99,40 @@ describe('Repositories - InMemoryWalletsRepository', () => {
       expect(() =>
         inMemoryWalletsRepository.update(userId, updateData)
       ).toThrow('Wallet not found!');
+    });
+
+    it('should update a wallet by user id', () => {
+      const walletDataUpdated = WalletDataMother.withUpdatedData();
+      const wallet = inMemoryWalletsRepository.create({
+        userId: walletDataUpdated.userId,
+      });
+
+      jest.useFakeTimers({
+        now: updateDateMock,
+      });
+
+      const updateData = {
+        email: walletDataUpdated.email,
+        sms: walletDataUpdated.sms,
+        whatsapp: walletDataUpdated.whatsapp,
+      };
+
+      const expectedWallet: Wallet = {
+        id: wallet.id,
+        userId: wallet.userId,
+        email: updateData.email,
+        sms: updateData.sms,
+        whatsapp: updateData.whatsapp,
+        createdAt: wallet.createdAt,
+        updatedAt: updateDateMock,
+      };
+
+      const updatedWallet = inMemoryWalletsRepository.update(
+        wallet.userId,
+        updateData
+      );
+
+      expect(updatedWallet).toEqual(expectedWallet);
     });
   });
 
