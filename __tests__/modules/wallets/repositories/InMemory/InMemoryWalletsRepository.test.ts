@@ -48,4 +48,14 @@ describe('Repositories - InMemoryWalletsRepository', () => {
       expect(wallet).toEqual(expectedWallet);
     });
   });
+
+  describe('findById', () => {
+    it('should return undefined when wallet does not exist', () => {
+      const nonexistentId = '987';
+      const wallet = inMemoryWalletsRepository.findById(nonexistentId);
+
+      expect(typeof wallet).toStrictEqual('undefined');
+      expect(wallet).toBeFalsy();
+    });
+  });
 });
