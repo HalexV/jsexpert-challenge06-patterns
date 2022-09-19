@@ -83,6 +83,23 @@ describe('Repositories - InMemoryWalletsRepository', () => {
     });
   });
 
+  describe('update', () => {
+    it('should throw an error when wallet does not exist', () => {
+      const walletDataUpdated = WalletDataMother.withUpdatedData();
+      const updateData = {
+        email: walletDataUpdated.email,
+        sms: walletDataUpdated.sms,
+        whatsapp: walletDataUpdated.whatsapp,
+      };
+
+      const userId = 'invalid';
+
+      expect(() =>
+        inMemoryWalletsRepository.update(userId, updateData)
+      ).toThrow('Wallet not found!');
+    });
+  });
+
   describe('deleteAll', () => {
     it('should delete all data', () => {
       const userIds = ['1234', '4321'];
