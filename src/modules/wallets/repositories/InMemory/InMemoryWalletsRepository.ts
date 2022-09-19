@@ -51,7 +51,7 @@ export default class InMemoryWalletsRepository implements IWalletsRepository {
   }
 
   update(userId: string, { email, sms, whatsapp }: IUpdateWalletDTO): Wallet {
-    throw new Error('Not Implemented');
+    throw new Error('Wallet not found!');
   }
 
   findById(userId: string): Wallet | undefined {
