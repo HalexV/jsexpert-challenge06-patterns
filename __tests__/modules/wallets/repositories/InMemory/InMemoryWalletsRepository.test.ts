@@ -1,4 +1,11 @@
-import { describe, it, expect, beforeAll, jest } from '@jest/globals';
+import {
+  describe,
+  it,
+  expect,
+  beforeAll,
+  jest,
+  afterEach,
+} from '@jest/globals';
 import Wallet from '../../../../../src/modules/wallets/model/Wallet';
 import InMemoryWalletsRepository from '../../../../../src/modules/wallets/repositories/InMemory/InMemoryWalletsRepository';
 import WalletDataMother from './WalletDataMother';
@@ -10,6 +17,10 @@ describe('Repositories - InMemoryWalletsRepository', () => {
 
   beforeAll(() => {
     inMemoryWalletsRepository = InMemoryWalletsRepository.getInstance();
+  });
+
+  afterEach(() => {
+    inMemoryWalletsRepository.deleteAll();
   });
 
   describe('getInstance', () => {
@@ -50,6 +61,19 @@ describe('Repositories - InMemoryWalletsRepository', () => {
   });
 
   describe('findById', () => {
+    it('should find a wallet by user id', () => {
+      const walletData = WalletDataMother.valid();
+      const wallet = inMemoryWalletsRepository.create({
+        userId: walletData.userId,
+      });
+
+      const userId = wallet.userId;
+
+      const walletFound = inMemoryWalletsRepository.findById(userId) as Wallet;
+
+      expect(walletFound).toEqual(wallet);
+    });
+
     it('should return undefined when wallet does not exist', () => {
       const nonexistentId = '987';
       const wallet = inMemoryWalletsRepository.findById(nonexistentId);
