@@ -156,6 +156,15 @@ describe('Repositories - InMemoryWalletsRepository', () => {
     });
   });
 
+  describe('delete', () => {
+    it('should throw an error when wallet does not exist', () => {
+      const userId = 'invalid';
+      expect(() => inMemoryWalletsRepository.delete(userId)).toThrow(
+        'Wallet not found!'
+      );
+    });
+  });
+
   describe('deleteAll', () => {
     it('should delete all data', () => {
       const userIds = ['1234', '4321'];
