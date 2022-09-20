@@ -134,6 +134,26 @@ describe('Repositories - InMemoryWalletsRepository', () => {
 
       expect(updatedWallet).toEqual(expectedWallet);
     });
+
+    it('should just return the wallet when update data is empty', () => {
+      const walletData = WalletDataMother.valid();
+      const updateData = {};
+
+      const wallet = inMemoryWalletsRepository.create({
+        userId: walletData.userId,
+      });
+
+      jest.useFakeTimers({
+        now: updateDateMock,
+      });
+
+      const notUpdatedWallet = inMemoryWalletsRepository.update(
+        wallet.userId,
+        updateData
+      );
+
+      expect(notUpdatedWallet).toEqual(wallet);
+    });
   });
 
   describe('deleteAll', () => {
