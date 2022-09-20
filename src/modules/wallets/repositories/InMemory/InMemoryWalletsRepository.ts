@@ -84,6 +84,16 @@ export default class InMemoryWalletsRepository implements IWalletsRepository {
   }
 
   delete(userId: string): true {
-    throw new Error('Wallet not found!');
+    const wallet = this.findById(userId);
+
+    if (!wallet) throw new Error('Wallet not found!');
+
+    const walletIndex = this.wallets.findIndex(
+      (walletObj) => walletObj.userId === wallet.userId
+    );
+
+    this.wallets.splice(walletIndex, 1);
+
+    return true;
   }
 }
