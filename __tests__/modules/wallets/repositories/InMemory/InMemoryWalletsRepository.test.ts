@@ -163,6 +163,20 @@ describe('Repositories - InMemoryWalletsRepository', () => {
         'Wallet not found!'
       );
     });
+
+    it('should delete a wallet', () => {
+      const walletData = WalletDataMother.valid();
+      const wallet = inMemoryWalletsRepository.create({
+        userId: walletData.userId,
+      });
+
+      const deleteResult = inMemoryWalletsRepository.delete(wallet.userId);
+
+      const findResult = inMemoryWalletsRepository.findById(wallet.userId);
+
+      expect(deleteResult).toBeTruthy();
+      expect(typeof findResult).toStrictEqual('undefined');
+    });
   });
 
   describe('deleteAll', () => {
