@@ -84,6 +84,6 @@ export default class InMemoryWalletsRepository implements IWalletsRepository {
   }
 
   delete(userId: string): true {
-    throw new Error('Not Implemented');
+    throw new Error('Wallet not found!');
   }
 }
