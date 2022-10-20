@@ -62,4 +62,14 @@ describe('Repositories - InMemoryMessagesRepository', () => {
       expect(message).toEqual(expectedMessage);
     });
   });
+
+  describe('findById', () => {
+    it('should return undefined when message does not exist', () => {
+      const nonexistentId = '987';
+      const message = inMemoryMessagesRepository.findById(nonexistentId);
+
+      expect(typeof message).toStrictEqual('undefined');
+      expect(message).toBeFalsy();
+    });
+  });
 });
