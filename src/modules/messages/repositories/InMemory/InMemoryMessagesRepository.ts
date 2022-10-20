@@ -62,7 +62,17 @@ export default class InMemoryMessagesRepository implements IMessagesRepository {
   }
 
   update(messageId: string, { content }: IUpdateMessageDTO): Message {
-    throw new Error('Message not found!');
+    const message = this.findById(messageId);
+
+    if (!message) throw new Error('Message not found!');
+
+    if (content) {
+      message.content = content;
+      message.updatedAt = new Date();
+      return message;
+    }
+
+    return message;
   }
 
   findById(messageId: string): Message | undefined {
