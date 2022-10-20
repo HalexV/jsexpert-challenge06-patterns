@@ -64,6 +64,25 @@ describe('Repositories - InMemoryMessagesRepository', () => {
   });
 
   describe('findById', () => {
+    it('should find a message by id', () => {
+      const messageData = MessageDataMother.valid();
+      const message = inMemoryMessagesRepository.create({
+        userId: messageData.userId,
+        contactId: messageData.contactId,
+        content: messageData.content,
+        status: messageData.status,
+        type: messageData.type,
+      });
+
+      const messageId = message.id;
+
+      const messageFound = inMemoryMessagesRepository.findById(
+        messageId
+      ) as Message;
+
+      expect(messageFound).toEqual(message);
+    });
+
     it('should return undefined when message does not exist', () => {
       const nonexistentId = '987';
       const message = inMemoryMessagesRepository.findById(nonexistentId);
