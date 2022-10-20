@@ -14,5 +14,14 @@ describe('Repositories - InMemoryMessagesRepository', () => {
         InMemoryMessagesRepository
       );
     });
+
+    it('should return the same InMemoryMessagesRepository on another calls', () => {
+      const inMemoryMessagesRepositorySecondCall =
+        InMemoryMessagesRepository.getInstance();
+
+      expect(inMemoryMessagesRepositorySecondCall).toBe(
+        inMemoryMessagesRepository
+      );
+    });
   });
 });
