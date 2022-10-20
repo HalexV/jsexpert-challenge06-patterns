@@ -13,9 +13,11 @@ import MessageDataMother from './MessageDataMother';
 
 describe('Repositories - InMemoryMessagesRepository', () => {
   let inMemoryMessagesRepository: InMemoryMessagesRepository;
+  let updateDateMock: Date;
 
   beforeAll(() => {
     inMemoryMessagesRepository = InMemoryMessagesRepository.getInstance();
+    updateDateMock = new Date('2022-01-02');
   });
 
   afterEach(() => {
@@ -105,6 +107,38 @@ describe('Repositories - InMemoryMessagesRepository', () => {
       expect(() =>
         inMemoryMessagesRepository.update(messageId, updateData)
       ).toThrow('Message not found!');
+    });
+
+    it('should update a message by id', () => {
+      const messageData = MessageDataMother.valid();
+      const messageDataUpdated = MessageDataMother.withUpdatedContent();
+      const message = inMemoryMessagesRepository.create({
+        userId: messageData.userId,
+        contactId: messageData.contactId,
+        content: messageData.content,
+        status: messageData.status,
+        type: messageData.type,
+      });
+
+      jest.useFakeTimers({
+        now: updateDateMock,
+      });
+
+      const updateData = {
+        content: messageDataUpdated.content,
+      };
+
+      const expectedMessage = Object.assign({}, message, {
+        content: updateData.content,
+        updatedAt: updateDateMock,
+      });
+
+      const updatedMessage = inMemoryMessagesRepository.update(
+        message.id,
+        updateData
+      );
+
+      expect(updatedMessage).toEqual(expectedMessage);
     });
   });
 
