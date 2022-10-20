@@ -100,6 +100,24 @@ describe('Repositories - InMemoryMessagesRepository', () => {
         'Message not found!'
       );
     });
+
+    it('should delete a message', () => {
+      const messageData = MessageDataMother.valid();
+      const message = inMemoryMessagesRepository.create({
+        userId: messageData.userId,
+        contactId: messageData.contactId,
+        content: messageData.content,
+        status: messageData.status,
+        type: messageData.type,
+      });
+
+      const deleteResult = inMemoryMessagesRepository.delete(message.id);
+
+      const findResult = inMemoryMessagesRepository.findById(message.id);
+
+      expect(deleteResult).toBeTruthy();
+      expect(typeof findResult).toStrictEqual('undefined');
+    });
   });
 
   describe('deleteAll', () => {
