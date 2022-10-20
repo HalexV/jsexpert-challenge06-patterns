@@ -93,6 +93,15 @@ describe('Repositories - InMemoryMessagesRepository', () => {
     });
   });
 
+  describe('delete', () => {
+    it('should throw an error when message does not exist', () => {
+      const messageId = 'invalid';
+      expect(() => inMemoryMessagesRepository.delete(messageId)).toThrow(
+        'Message not found!'
+      );
+    });
+  });
+
   describe('deleteAll', () => {
     it('should delete all data', () => {
       const messageData = MessageDataMother.valid();
