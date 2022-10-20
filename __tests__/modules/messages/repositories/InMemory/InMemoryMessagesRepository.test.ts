@@ -93,6 +93,21 @@ describe('Repositories - InMemoryMessagesRepository', () => {
     });
   });
 
+  describe('update', () => {
+    it('should throw an error when message does not exist', () => {
+      const messageDataUpdated = MessageDataMother.withUpdatedContent();
+      const updateData = {
+        content: messageDataUpdated.content,
+      };
+
+      const messageId = 'invalid';
+
+      expect(() =>
+        inMemoryMessagesRepository.update(messageId, updateData)
+      ).toThrow('Message not found!');
+    });
+  });
+
   describe('delete', () => {
     it('should throw an error when message does not exist', () => {
       const messageId = 'invalid';
