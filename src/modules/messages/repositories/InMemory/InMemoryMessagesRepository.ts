@@ -61,15 +61,15 @@ export default class InMemoryMessagesRepository implements IMessagesRepository {
     return message;
   }
 
-  update(userId: string, data: IUpdateMessageDTO): Message {
+  update(messageId: string, data: IUpdateMessageDTO): Message {
     throw new Error('Not Implemented');
   }
 
-  findById(userId: string): Message | undefined {
-    return undefined;
+  findById(messageId: string): Message | undefined {
+    return this.messages.find((message) => message.id === messageId);
   }
 
-  delete(userId: string): true {
+  delete(messageId: string): true {
     throw new Error('Not Implemented');
   }
 }
