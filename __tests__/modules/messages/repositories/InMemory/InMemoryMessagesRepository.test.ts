@@ -140,6 +140,30 @@ describe('Repositories - InMemoryMessagesRepository', () => {
 
       expect(updatedMessage).toEqual(expectedMessage);
     });
+
+    it('should just return the message when update data is empty', () => {
+      const messageData = MessageDataMother.valid();
+      const updateData = {};
+
+      const message = inMemoryMessagesRepository.create({
+        userId: messageData.userId,
+        contactId: messageData.contactId,
+        content: messageData.content,
+        status: messageData.status,
+        type: messageData.type,
+      });
+
+      jest.useFakeTimers({
+        now: updateDateMock,
+      });
+
+      const notUpdatedMessage = inMemoryMessagesRepository.update(
+        message.id,
+        updateData
+      );
+
+      expect(notUpdatedMessage).toEqual(message);
+    });
   });
 
   describe('delete', () => {
