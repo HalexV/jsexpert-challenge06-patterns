@@ -1,8 +1,8 @@
 export default class Message {
-  id: String;
-  userId: String;
-  contactId: String;
-  content: String;
+  id: string;
+  userId: string;
+  contactId: string;
+  content: string;
   type: 'email' | 'sms' | 'whatsapp';
   status: 'received' | 'sent';
   createdAt: Date;
