@@ -70,6 +70,6 @@ export default class InMemoryMessagesRepository implements IMessagesRepository {
   }
 
   delete(messageId: string): true {
-    throw new Error('Not Implemented');
+    throw new Error('Message not found!');
   }
 }
