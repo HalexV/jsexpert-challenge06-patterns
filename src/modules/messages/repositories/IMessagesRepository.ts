@@ -4,7 +4,7 @@ import Message from '../model/Message';
 
 export default interface IMessagesRepository {
   create: (data: ICreateMessageDTO) => Message;
-  update: (userId: string, data: IUpdateMessageDTO) => Message;
-  findById: (userId: string) => Message | undefined;
-  delete: (userId: string) => true;
+  update: (messageId: string, data: IUpdateMessageDTO) => Message;
+  findById: (messageId: string) => Message | undefined;
+  delete: (messageId: string) => true;
 }
