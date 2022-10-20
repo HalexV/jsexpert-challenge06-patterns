@@ -70,6 +70,16 @@ export default class InMemoryMessagesRepository implements IMessagesRepository {
   }
 
   delete(messageId: string): true {
-    throw new Error('Message not found!');
+    const message = this.findById(messageId);
+
+    if (!message) throw new Error('Message not found!');
+
+    const messageIndex = this.messages.findIndex(
+      (messageObj) => messageObj.id === message.id
+    );
+
+    this.messages.splice(messageIndex, 1);
+
+    return true;
   }
 }
