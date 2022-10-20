@@ -22,6 +22,7 @@ describe('Repositories - InMemoryWalletsRepository', () => {
   });
 
   afterEach(() => {
+    jest.useRealTimers();
     inMemoryWalletsRepository.deleteAll();
   });
 
