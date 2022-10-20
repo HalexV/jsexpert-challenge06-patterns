@@ -31,6 +31,14 @@ export default class MessageDataBuilder {
     return new MessageDataBuilder();
   }
 
+  withUpdatedContent(): MessageDataBuilder {
+    Object.assign(this.messageData, {
+      content: 'updated content',
+      updateAt: new Date('2022-01-02'),
+    });
+    return this;
+  }
+
   build(): MessageData {
     return this.messageData;
   }
