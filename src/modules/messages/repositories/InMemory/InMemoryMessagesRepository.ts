@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 
+import { randomUUID } from 'node:crypto';
+
 import ICreateMessageDTO from '../../dtos/ICreateMessageDTO';
 import IUpdateMessageDTO from '../../dtos/IUpdateMessageDTO';
 import Message from '../../model/Message';
@@ -28,8 +30,35 @@ export default class InMemoryMessagesRepository implements IMessagesRepository {
     }
   }
 
-  create(data: ICreateMessageDTO): Message {
-    throw new Error('Not Implemented');
+  create({
+    contactId,
+    content,
+    status,
+    type,
+    userId,
+  }: ICreateMessageDTO): Message {
+    const message = new Message();
+
+    const date = new Date();
+
+    const data: Partial<Message> = {
+      id: randomUUID({
+        disableEntropyCache: true,
+      }),
+      userId,
+      contactId,
+      content,
+      status,
+      type,
+      createdAt: date,
+      updatedAt: date,
+    };
+
+    Object.assign(message, data);
+
+    this.messages.push(message);
+
+    return message;
   }
 
   update(userId: string, data: IUpdateMessageDTO): Message {
