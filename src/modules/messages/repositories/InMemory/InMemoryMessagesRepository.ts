@@ -66,7 +66,7 @@ export default class InMemoryMessagesRepository implements IMessagesRepository {
   }
 
   findById(userId: string): Message | undefined {
-    throw new Error('Not Implemented');
+    return undefined;
   }
 
   delete(userId: string): true {
