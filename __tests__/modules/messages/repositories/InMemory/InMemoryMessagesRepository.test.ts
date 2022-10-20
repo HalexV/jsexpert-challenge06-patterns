@@ -20,6 +20,7 @@ describe('Repositories - InMemoryMessagesRepository', () => {
 
   afterEach(() => {
     jest.useRealTimers();
+    inMemoryMessagesRepository.deleteAll();
   });
 
   describe('getInstance', () => {
@@ -89,6 +90,39 @@ describe('Repositories - InMemoryMessagesRepository', () => {
 
       expect(typeof message).toStrictEqual('undefined');
       expect(message).toBeFalsy();
+    });
+  });
+
+  describe('deleteAll', () => {
+    it('should delete all data', () => {
+      const messageData = MessageDataMother.valid();
+      const message1 = inMemoryMessagesRepository.create({
+        userId: messageData.userId,
+        contactId: messageData.contactId,
+        content: messageData.content,
+        status: messageData.status,
+        type: messageData.type,
+      });
+
+      const message2 = inMemoryMessagesRepository.create({
+        userId: messageData.userId,
+        contactId: messageData.contactId,
+        content: messageData.content,
+        status: messageData.status,
+        type: messageData.type,
+      });
+
+      inMemoryMessagesRepository.deleteAll();
+
+      const messageNotFound1 = inMemoryMessagesRepository.findById(
+        message1.userId
+      );
+      const messageNotFound2 = inMemoryMessagesRepository.findById(
+        message2.userId
+      );
+
+      expect(messageNotFound1).toBeFalsy();
+      expect(messageNotFound2).toBeFalsy();
     });
   });
 });
