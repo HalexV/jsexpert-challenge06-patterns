@@ -2,6 +2,10 @@ export default {
   clearMocks: true,
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   coverageDirectory: 'coverage',
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/.*/dtos',
+    '<rootDir>/src/.*/repositories/I\\w+Repository\\.ts',
+  ],
   coverageProvider: 'v8',
   coverageReporters: ['html', 'text'],
   coverageThreshold: {
