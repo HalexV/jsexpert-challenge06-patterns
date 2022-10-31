@@ -172,6 +172,40 @@
                 <mxCell id="69" value="&lt;font style=&quot;font-size: 18px&quot;&gt;&lt;b&gt;Serviços Externos&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1021" y="516" width="231" height="30" as="geometry"/>
                 </mxCell>
+                <mxCell id="70" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#003333;" vertex="1" parent="1">
+                    <mxGeometry x="1664" y="408" width="644" height="154" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="&lt;h1&gt;Formas de aquisição de créditos&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1792.5" y="207" width="387" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="" style="edgeStyle=none;html=1;" edge="1" source="73" target="79" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1781" y="437" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="73" value="Boleto" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1721" y="297" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="" style="edgeStyle=none;html=1;" edge="1" source="75" target="79" parent="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" value="Cartão de Crédito" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1926" y="297" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="76" value="" style="edgeStyle=none;html=1;" edge="1" source="77" target="79" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2175" y="437" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="77" value="Pix" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="2115" y="297" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" value="Gateway de Pagamento" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="1926" y="437" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" value="&lt;font style=&quot;font-size: 18px&quot;&gt;&lt;b&gt;Serviços Externos&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1873" y="516" width="231" height="30" as="geometry"/>
+                </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
