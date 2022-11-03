@@ -35,4 +35,16 @@ describe('Queue Components - InMemoryOrderQueue', () => {
       expect(result).toBeTruthy();
     });
   });
+
+  describe('get', () => {
+    it('should get an order from queue', () => {
+      const orderData = OrderDataMother.valid();
+
+      inMemoryOrderQueue.add(orderData);
+
+      const order = inMemoryOrderQueue.get();
+
+      expect(order).toEqual(orderData);
+    });
+  });
 });
