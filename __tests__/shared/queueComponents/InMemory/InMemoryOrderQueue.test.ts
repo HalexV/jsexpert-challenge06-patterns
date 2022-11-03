@@ -18,10 +18,10 @@ describe('Queue Components - InMemoryOrderQueue', () => {
       expect(inMemoryOrderQueue).toBeInstanceOf(InMemoryOrderQueue);
     });
 
-    it.skip('should return the same InMemoryOrderQueue on another calls', () => {
+    it('should return the same InMemoryOrderQueue on another calls', () => {
       const inMemoryOrderQueueSecondCall = InMemoryOrderQueue.getInstance();
 
-      expect(inMemoryOrderQueueSecondCall).toBe(InMemoryOrderQueue);
+      expect(inMemoryOrderQueueSecondCall).toBe(inMemoryOrderQueue);
     });
   });
 });
