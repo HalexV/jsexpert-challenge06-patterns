@@ -36,7 +36,18 @@ export default class InMemoryOrderQueue implements IQueueComponent {
     }
   }
 
-  add(): any {}
-  get(): any {}
-  remove(): any {}
+  add(data: Order): true {
+    this.orders.push(data);
+    return true;
+  }
+
+  get(): Order {
+    throw new Error('Not Implemented Yet');
+  }
+
+  remove(): true {
+    throw new Error('Not Implemented Yet');
+  }
 }
+
+export { Order, Credit };
