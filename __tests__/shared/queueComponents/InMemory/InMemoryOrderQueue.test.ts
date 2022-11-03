@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll, afterEach } from '@jest/globals';
 
 import InMemoryOrderQueue from '../../../../src/shared/queueComponents/InMemory/InMemoryOrderQueue';
+import OrderDataMother from './OrderDataMother';
 
 describe('Queue Components - InMemoryOrderQueue', () => {
   let inMemoryOrderQueue: InMemoryOrderQueue;
@@ -22,6 +23,16 @@ describe('Queue Components - InMemoryOrderQueue', () => {
       const inMemoryOrderQueueSecondCall = InMemoryOrderQueue.getInstance();
 
       expect(inMemoryOrderQueueSecondCall).toBe(inMemoryOrderQueue);
+    });
+  });
+
+  describe('add', () => {
+    it('should add an order to queue', () => {
+      const orderData = OrderDataMother.valid();
+
+      const result = inMemoryOrderQueue.add(orderData);
+
+      expect(result).toBeTruthy();
     });
   });
 });
