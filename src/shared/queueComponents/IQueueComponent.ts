@@ -1,5 +1,5 @@
 export default interface IQueueComponent {
-  add: () => {};
-  get: () => {};
-  remove: () => {};
+  add: (data: any) => true;
+  get: () => any;
+  remove: (data: any) => true;
 }
