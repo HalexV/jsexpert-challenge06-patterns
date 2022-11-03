@@ -20,3 +20,18 @@ Wallets
 - [x] Update a wallet
 - [x] Find a wallet by id
 - [x] Delete a wallet
+
+Payment Components
+
+- [] Payment with Boleto
+- [] Payment with Credit Card
+- [] Payment with Pix
+
+Queue Components
+
+Order Queue
+
+- [] Add an order to queue
+- [] Get an order to queue
+- [] Remove an order to queue
+- [] Delete all orders from queue
