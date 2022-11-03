@@ -42,7 +42,7 @@ export default class InMemoryOrderQueue implements IQueueComponent {
   }
 
   get(): Order {
-    throw new Error('Not Implemented Yet');
+    return this.orders[0];
   }
 
   remove(): true {
