@@ -67,4 +67,20 @@ describe('Queue Components - InMemoryOrderQueue', () => {
       expect(order).toBeFalsy();
     });
   });
+
+  describe('deleteAll', () => {
+    it('should delete all data', () => {
+      const orderData = OrderDataMother.valid();
+      const orderData2 = OrderDataMother.validWithPaymentTypePix();
+
+      inMemoryOrderQueue.add(orderData);
+      inMemoryOrderQueue.add(orderData2);
+
+      inMemoryOrderQueue.deleteAll();
+
+      const order = inMemoryOrderQueue.get();
+
+      expect(order).toBeFalsy();
+    });
+  });
 });
