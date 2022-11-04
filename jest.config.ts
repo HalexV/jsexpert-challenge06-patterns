@@ -5,6 +5,7 @@ export default {
   coveragePathIgnorePatterns: [
     '<rootDir>/src/.*/dtos',
     '<rootDir>/src/.*/repositories/I\\w+Repository\\.ts',
+    '<rootDir>/src/shared/.*/I\\w+Component\\.ts',
   ],
   coverageProvider: 'v8',
   coverageReporters: ['html', 'text'],
