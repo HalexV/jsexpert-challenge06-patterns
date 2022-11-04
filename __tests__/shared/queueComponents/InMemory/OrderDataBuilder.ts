@@ -21,6 +21,13 @@ export default class OrderDataBuilder {
     return new OrderDataBuilder();
   }
 
+  withPaymentTypePix(): OrderDataBuilder {
+    Object.assign({}, this.orderData, {
+      type: 'pix',
+    });
+    return this;
+  }
+
   build(): Order {
     return this.orderData;
   }
