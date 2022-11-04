@@ -7,4 +7,8 @@ export default class OrderDataMother {
   static valid(): Order {
     return OrderDataBuilder.anOrderData().build();
   }
+
+  static validWithPaymentTypePix(): Order {
+    return OrderDataBuilder.anOrderData().withPaymentTypePix().build();
+  }
 }
