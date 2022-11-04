@@ -31,7 +31,6 @@ Queue Components
 
 Order Queue
 
-- [] Add an order to queue
-- [] Get an order to queue
-- [] Remove an order to queue
-- [] Delete all orders from queue
+- [x] Add an order to queue
+- [x] Get an order to queue
+- [x] Delete all orders from queue
