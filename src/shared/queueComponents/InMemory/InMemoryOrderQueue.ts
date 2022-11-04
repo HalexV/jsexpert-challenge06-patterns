@@ -41,12 +41,12 @@ export default class InMemoryOrderQueue implements IQueueComponent {
     return true;
   }
 
-  get(): Order {
-    return this.orders[0];
-  }
+  get(): Order | false {
+    const order = this.orders.pop();
 
-  remove(): true {
-    throw new Error('Not Implemented Yet');
+    if (!order) return false;
+
+    return order;
   }
 }
 
