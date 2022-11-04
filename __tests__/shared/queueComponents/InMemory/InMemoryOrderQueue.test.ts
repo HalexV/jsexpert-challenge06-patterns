@@ -60,5 +60,11 @@ describe('Queue Components - InMemoryOrderQueue', () => {
       expect(order).toEqual(orderData);
       expect(order2).toEqual(orderData2);
     });
+
+    it('should return false when the queue is empty', () => {
+      const order = inMemoryOrderQueue.get();
+
+      expect(order).toBeFalsy();
+    });
   });
 });
