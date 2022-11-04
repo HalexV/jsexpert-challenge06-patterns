@@ -46,5 +46,19 @@ describe('Queue Components - InMemoryOrderQueue', () => {
 
       expect(order).toEqual(orderData);
     });
+
+    it('should get the next order from queue', () => {
+      const orderData = OrderDataMother.valid();
+      const orderData2 = OrderDataMother.validWithPaymentTypePix();
+
+      inMemoryOrderQueue.add(orderData);
+      inMemoryOrderQueue.add(orderData2);
+
+      const order = inMemoryOrderQueue.get();
+      const order2 = inMemoryOrderQueue.get();
+
+      expect(order).toEqual(orderData);
+      expect(order2).toEqual(orderData2);
+    });
   });
 });
