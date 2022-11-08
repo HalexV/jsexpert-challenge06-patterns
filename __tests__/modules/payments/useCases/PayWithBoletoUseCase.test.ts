@@ -44,7 +44,7 @@ const makePaymentComponent = (): IPaymentComponent => {
 
 const makeOrderQueueComponent = (): IQueueComponent => {
   class OrderQueueComponentStub implements IQueueComponent {
-    async add(data: any): Promise<true> {
+    async add(data: Order): Promise<true> {
       return await new Promise((resolve) => resolve(true));
     }
 
@@ -92,5 +92,35 @@ describe('Use Cases - Pay with boleto use case', () => {
     });
 
     expect(payWithBoletoSpy).toBeCalledWith(expectedArguments);
+  });
+
+  it('should call orderQueue add with correct arguments', async () => {
+    const { sut, orderQueueComponentStub } = makeSut();
+
+    const orderQueueAddSpy = jest.spyOn(orderQueueComponentStub, 'add');
+    const payWithBoletoResponse = BoletoResponseDataMother.valid();
+    const { productList, customerName } = BoletoDTODataMother.valid();
+
+    const credits = productList.map((product) => ({
+      id: product.id,
+      quantity: product.quantity,
+    }));
+
+    const userId = '1234';
+
+    const expectedArguments: Order = {
+      type: 'bol',
+      credits,
+      transactionCode: payWithBoletoResponse.boletoCode,
+      userId: '1234',
+    };
+
+    await sut.execute({
+      userId,
+      customerName,
+      productList,
+    });
+
+    expect(orderQueueAddSpy).toHaveBeenCalledWith(expectedArguments);
   });
 });
