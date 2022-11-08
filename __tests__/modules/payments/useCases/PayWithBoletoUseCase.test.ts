@@ -10,6 +10,7 @@ import IPaymentComponent, {
 } from '../../../../src/shared/paymentComponents/IPaymentComponent';
 import { Order } from '../../../../src/shared/queueComponents/InMemory/InMemoryOrderQueue';
 import IQueueComponent from '../../../../src/shared/queueComponents/IQueueComponent';
+import getCredits from '../../../../src/shared/utils/getCredits';
 import OrderDataMother from '../../../shared/queueComponents/InMemory/OrderDataMother';
 import BoletoDTODataMother from './BoletoDTODataMother';
 import BoletoResponseDataMother from './BoletoResponseDataMother';
@@ -101,10 +102,7 @@ describe('Use Cases - Pay with boleto use case', () => {
     const payWithBoletoResponse = BoletoResponseDataMother.valid();
     const { productList, customerName } = BoletoDTODataMother.valid();
 
-    const credits = productList.map((product) => ({
-      id: product.id,
-      quantity: product.quantity,
-    }));
+    const credits = getCredits(productList);
 
     const userId = '1234';
 

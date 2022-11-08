@@ -1,11 +1,9 @@
 import IPaymentComponent, {
   Product,
 } from '../../../shared/paymentComponents/IPaymentComponent';
-import {
-  Credit,
-  Order,
-} from '../../../shared/queueComponents/InMemory/InMemoryOrderQueue';
+import { Order } from '../../../shared/queueComponents/InMemory/InMemoryOrderQueue';
 import IQueueComponent from '../../../shared/queueComponents/IQueueComponent';
+import getCredits from '../../../shared/utils/getCredits';
 
 interface IRequest {
   userId: string;
@@ -25,10 +23,7 @@ export default class PayWithBoletoUseCase {
       productList,
     });
 
-    const credits: Credit[] = productList.map((product) => ({
-      id: product.id,
-      quantity: product.quantity,
-    }));
+    const credits = getCredits(productList);
 
     const order: Order = {
       type: 'bol',
