@@ -78,7 +78,7 @@ const makeSut = (): SutTypes => {
   };
 };
 
-describe('Use Cases - Pay with boleto use case', () => {
+describe('Use Cases - Pay with boleto', () => {
   it('should call payWithBoleto with correct arguments', async () => {
     const { sut, paymentComponentStub } = makeSut();
 
@@ -93,6 +93,24 @@ describe('Use Cases - Pay with boleto use case', () => {
     });
 
     expect(payWithBoletoSpy).toBeCalledWith(expectedArguments);
+  });
+
+  it('should throw if payWithBoleto throws', async () => {
+    const { sut, paymentComponentStub } = makeSut();
+
+    jest
+      .spyOn(paymentComponentStub, 'payWithBoleto')
+      .mockRejectedValueOnce(new Error());
+
+    const expectedArguments = BoletoDTODataMother.valid();
+
+    const promise = sut.execute({
+      userId: '1234',
+      customerName: expectedArguments.customerName,
+      productList: expectedArguments.productList,
+    });
+
+    await expect(promise).rejects.toThrow();
   });
 
   it('should call orderQueue add with correct arguments', async () => {
