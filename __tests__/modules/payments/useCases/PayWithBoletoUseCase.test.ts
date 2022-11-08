@@ -139,4 +139,23 @@ describe('Use Cases - Pay with boleto', () => {
 
     expect(orderQueueAddSpy).toHaveBeenCalledWith(expectedArguments);
   });
+
+  it('should throw if orderQueue add throws', async () => {
+    const { sut, orderQueueComponentStub } = makeSut();
+
+    jest
+      .spyOn(orderQueueComponentStub, 'add')
+      .mockRejectedValueOnce(new Error());
+    const { productList, customerName } = BoletoDTODataMother.valid();
+
+    const userId = '1234';
+
+    const promise = sut.execute({
+      userId,
+      customerName,
+      productList,
+    });
+
+    await expect(promise).rejects.toThrow();
+  });
 });
