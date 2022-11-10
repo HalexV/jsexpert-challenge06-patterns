@@ -28,7 +28,7 @@ export default class PayWithCreditCardUseCase {
     customerName,
     productList,
     creditCardData,
-  }: IRequest): Promise<any> {
+  }: IRequest): Promise<true> {
     const { cardNumber, expireDate, ownerName, secureCode } = creditCardData;
     const { transactionCode } = await this.paymentComponent.payWithCreditCard({
       cardNumber,
@@ -48,5 +48,7 @@ export default class PayWithCreditCardUseCase {
     };
 
     await this.orderQueue.add(order);
+
+    return true;
   }
 }
