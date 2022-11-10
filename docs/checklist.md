@@ -23,7 +23,7 @@ Wallets
 
 Payment Components
 
-- [] Payment with Boleto
+- [x] Payment with Boleto
 - [] Payment with Credit Card
 - [] Payment with Pix
 
