@@ -10,6 +10,7 @@ import IPaymentComponent, {
 } from '../../../../src/shared/paymentComponents/IPaymentComponent';
 import { Order } from '../../../../src/shared/queueComponents/InMemory/InMemoryOrderQueue';
 import IQueueComponent from '../../../../src/shared/queueComponents/IQueueComponent';
+import getCredits from '../../../../src/shared/utils/getCredits';
 import OrderDataMother from '../../../shared/queueComponents/InMemory/OrderDataMother';
 import BoletoResponseDataMother from './BoletoResponseDataMother';
 import CreditCardDTODataMother from './CreditCardDTODataMother';
@@ -129,5 +130,39 @@ describe('Use Cases - Pay with credit card', () => {
     });
 
     await expect(promise).rejects.toThrowError();
+  });
+
+  it('should call orderQueue add with correct arguments', async () => {
+    const { sut, orderQueueComponentStub } = makeSut();
+
+    const orderQueueAddSpy = jest.spyOn(orderQueueComponentStub, 'add');
+    const { transactionCode } = CreditCardResponseDataMother.valid();
+    const { ownerName, productList, cardNumber, expireDate, secureCode } =
+      CreditCardDTODataMother.valid();
+
+    const credits = getCredits(productList);
+
+    const userId = '1234';
+
+    const expectedArguments: Order = {
+      type: 'cc',
+      credits,
+      transactionCode,
+      userId,
+    };
+
+    await sut.execute({
+      userId,
+      customerName: ownerName,
+      productList,
+      creditCardData: {
+        ownerName,
+        cardNumber,
+        expireDate,
+        secureCode,
+      },
+    });
+
+    expect(orderQueueAddSpy).toHaveBeenCalledWith(expectedArguments);
   });
 });
