@@ -1,7 +1,9 @@
 import IPaymentComponent, {
   Product,
 } from '../../../shared/paymentComponents/IPaymentComponent';
+import { Order } from '../../../shared/queueComponents/InMemory/InMemoryOrderQueue';
 import IQueueComponent from '../../../shared/queueComponents/IQueueComponent';
+import getCredits from '../../../shared/utils/getCredits';
 
 interface IRequest {
   userId: string;
@@ -28,12 +30,23 @@ export default class PayWithCreditCardUseCase {
     creditCardData,
   }: IRequest): Promise<any> {
     const { cardNumber, expireDate, ownerName, secureCode } = creditCardData;
-    await this.paymentComponent.payWithCreditCard({
+    const { transactionCode } = await this.paymentComponent.payWithCreditCard({
       cardNumber,
       expireDate,
       ownerName,
       secureCode,
       productList,
     });
+
+    const credits = getCredits(productList);
+
+    const order: Order = {
+      userId,
+      type: 'cc',
+      transactionCode,
+      credits,
+    };
+
+    await this.orderQueue.add(order);
   }
 }
