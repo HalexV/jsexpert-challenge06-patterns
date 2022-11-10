@@ -158,4 +158,26 @@ describe('Use Cases - Pay with boleto', () => {
 
     await expect(promise).rejects.toThrow();
   });
+
+  it('should return boleto data on success', async () => {
+    const { sut } = makeSut();
+
+    const { productList, customerName } = BoletoDTODataMother.valid();
+    const userId = '1234';
+
+    const { boletoCode, boletoDoc } = BoletoResponseDataMother.valid();
+
+    const expectedResult = {
+      boletoCode,
+      boletoDoc,
+    };
+
+    const result = await sut.execute({
+      userId,
+      customerName,
+      productList,
+    });
+
+    expect(result).toEqual(expectedResult);
+  });
 });
