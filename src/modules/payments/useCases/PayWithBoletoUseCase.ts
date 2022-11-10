@@ -11,13 +11,22 @@ interface IRequest {
   productList: Product[];
 }
 
+interface BoletoData {
+  boletoCode: string;
+  boletoDoc: string;
+}
+
 export default class PayWithBoletoUseCase {
   constructor(
     private readonly paymentComponent: IPaymentComponent,
     private readonly orderQueue: IQueueComponent
   ) {}
 
-  async execute({ userId, customerName, productList }: IRequest): Promise<any> {
+  async execute({
+    userId,
+    customerName,
+    productList,
+  }: IRequest): Promise<BoletoData> {
     const boletoResponse = await this.paymentComponent.payWithBoleto({
       customerName,
       productList,
@@ -33,5 +42,7 @@ export default class PayWithBoletoUseCase {
     };
 
     await this.orderQueue.add(order);
+
+    return boletoResponse;
   }
 }
