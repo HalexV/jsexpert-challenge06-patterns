@@ -191,4 +191,27 @@ describe('Use Cases - Pay with credit card', () => {
 
     await expect(promise).rejects.toThrowError();
   });
+
+  it('should return true on success', async () => {
+    const { sut } = makeSut();
+
+    const { ownerName, productList, cardNumber, expireDate, secureCode } =
+      CreditCardDTODataMother.valid();
+
+    const userId = '1234';
+
+    const result = await sut.execute({
+      userId,
+      customerName: ownerName,
+      productList,
+      creditCardData: {
+        ownerName,
+        cardNumber,
+        expireDate,
+        secureCode,
+      },
+    });
+
+    expect(result).toBeTruthy();
+  });
 });
