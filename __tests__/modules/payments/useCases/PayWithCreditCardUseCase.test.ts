@@ -105,4 +105,29 @@ describe('Use Cases - Pay with credit card', () => {
 
     expect(payWithCreditCardSpy).toHaveBeenCalledWith(expectedArguments);
   });
+
+  it('should throw if payWithCreditCard throws', async () => {
+    const { sut, paymentComponentStub } = makeSut();
+    jest
+      .spyOn(paymentComponentStub, 'payWithCreditCard')
+      .mockRejectedValueOnce(new Error());
+
+    const payWithCreditCardDTO = CreditCardDTODataMother.valid();
+
+    const userId = '1234';
+
+    const promise = sut.execute({
+      userId,
+      customerName: payWithCreditCardDTO.ownerName,
+      productList: payWithCreditCardDTO.productList,
+      creditCardData: {
+        ownerName: payWithCreditCardDTO.ownerName,
+        cardNumber: payWithCreditCardDTO.cardNumber,
+        expireDate: payWithCreditCardDTO.expireDate,
+        secureCode: payWithCreditCardDTO.secureCode,
+      },
+    });
+
+    await expect(promise).rejects.toThrowError();
+  });
 });
