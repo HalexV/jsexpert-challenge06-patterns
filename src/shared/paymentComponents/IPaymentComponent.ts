@@ -13,7 +13,7 @@ interface IPayWithBoletoDTO {
 interface IPayWithCreditCardDTO {
   ownerName: string;
   cardNumber: string;
-  expireData: string;
+  expireDate: string;
   secureCode: string;
   productList: Product[];
 }
