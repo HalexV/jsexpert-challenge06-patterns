@@ -162,4 +162,22 @@ describe('Use Cases - Pay with pix', () => {
 
     await expect(promise).rejects.toThrowError();
   });
+
+  it('should return pix data on success', async () => {
+    const { sut } = makeSut();
+
+    const { productList, customerName } = PixDTODataMother.valid();
+
+    const userId = '1234';
+
+    const expectedResult = PixResponseDataMother.valid();
+
+    const result = await sut.execute({
+      userId,
+      customerName,
+      productList,
+    });
+
+    expect(result).toEqual(expectedResult);
+  });
 });
