@@ -11,13 +11,22 @@ interface IRequest {
   productList: Product[];
 }
 
+interface PixData {
+  qrcode: string;
+  transactionCode: string;
+}
+
 export default class PayWithPixUseCase {
   constructor(
     private readonly paymentComponent: IPaymentComponent,
     private readonly orderQueue: IQueueComponent
   ) {}
 
-  async execute({ userId, customerName, productList }: IRequest): Promise<any> {
+  async execute({
+    userId,
+    customerName,
+    productList,
+  }: IRequest): Promise<PixData> {
     const pixResponse = await this.paymentComponent.payWithPix({
       customerName,
       productList,
@@ -33,5 +42,7 @@ export default class PayWithPixUseCase {
     };
 
     await this.orderQueue.add(order);
+
+    return pixResponse;
   }
 }
