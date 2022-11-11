@@ -143,4 +143,23 @@ describe('Use Cases - Pay with pix', () => {
 
     expect(orderQueueAddSpy).toHaveBeenCalledWith(expectedArguments);
   });
+
+  it('should throw if orderQueue add throws', async () => {
+    const { sut, orderQueueComponentStub } = makeSut();
+
+    jest
+      .spyOn(orderQueueComponentStub, 'add')
+      .mockRejectedValueOnce(new Error());
+    const { productList, customerName } = PixDTODataMother.valid();
+
+    const userId = '1234';
+
+    const promise = sut.execute({
+      userId,
+      customerName,
+      productList,
+    });
+
+    await expect(promise).rejects.toThrowError();
+  });
 });
