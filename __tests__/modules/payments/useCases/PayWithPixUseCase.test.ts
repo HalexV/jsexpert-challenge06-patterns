@@ -10,6 +10,7 @@ import IPaymentComponent, {
 } from '../../../../src/shared/paymentComponents/IPaymentComponent';
 import { Order } from '../../../../src/shared/queueComponents/InMemory/InMemoryOrderQueue';
 import IQueueComponent from '../../../../src/shared/queueComponents/IQueueComponent';
+import getCredits from '../../../../src/shared/utils/getCredits';
 import OrderDataMother from '../../../shared/queueComponents/InMemory/OrderDataMother';
 import BoletoResponseDataMother from './BoletoResponseDataMother';
 import CreditCardResponseDataMother from './CreditCardResponseDataMother';
@@ -114,5 +115,32 @@ describe('Use Cases - Pay with pix', () => {
     });
 
     await expect(promise).rejects.toThrowError();
+  });
+
+  it('should call orderQueue add with correct arguments', async () => {
+    const { sut, orderQueueComponentStub } = makeSut();
+
+    const orderQueueAddSpy = jest.spyOn(orderQueueComponentStub, 'add');
+    const { transactionCode } = PixResponseDataMother.valid();
+    const { productList, customerName } = PixDTODataMother.valid();
+
+    const credits = getCredits(productList);
+
+    const userId = '1234';
+
+    const expectedArguments: Order = {
+      type: 'pix',
+      credits,
+      transactionCode,
+      userId,
+    };
+
+    await sut.execute({
+      userId,
+      customerName,
+      productList,
+    });
+
+    expect(orderQueueAddSpy).toHaveBeenCalledWith(expectedArguments);
   });
 });
