@@ -1,7 +1,9 @@
 import IPaymentComponent, {
   Product,
 } from '../../../shared/paymentComponents/IPaymentComponent';
+import { Order } from '../../../shared/queueComponents/InMemory/InMemoryOrderQueue';
 import IQueueComponent from '../../../shared/queueComponents/IQueueComponent';
+import getCredits from '../../../shared/utils/getCredits';
 
 interface IRequest {
   userId: string;
@@ -16,9 +18,20 @@ export default class PayWithPixUseCase {
   ) {}
 
   async execute({ userId, customerName, productList }: IRequest): Promise<any> {
-    await this.paymentComponent.payWithPix({
+    const pixResponse = await this.paymentComponent.payWithPix({
       customerName,
       productList,
     });
+
+    const credits = getCredits(productList);
+
+    const order: Order = {
+      userId,
+      type: 'pix',
+      transactionCode: pixResponse.transactionCode,
+      credits,
+    };
+
+    await this.orderQueue.add(order);
   }
 }
