@@ -12,10 +12,10 @@ Com o objetivo de colocar vocês para pensar em quais design patterns usar dado 
 
 Design Patterns sugeridos para serem implementados aqui:
 
-- [ ] Factory
+- [x] Factory
 - [ ] Abstract Factory
 - [x] N-Tiers Architecture
-- [ ] Dependency Injection
+- [x] Dependency Injection
 - [ ] Builder
 - [x] Fluent API
 - [ ] Facade
@@ -54,8 +54,8 @@ Então o que será avaliado é:
 
 ## Requisitos do desafio
 
-- [ ] Entendimento dos requisitos e implementação da solução
-- [ ] Uso de **no mínimo 6** dos Design Patterns mencionados
+- [x] Entendimento dos requisitos e implementação da solução
+- [x] Uso de **no mínimo 6** dos Design Patterns mencionados
 - [ ] Documentação de quais Design Patterns decidiu usar e por quê no arquivo `ARCHITECTURE.md`
 - [ ] Testes Unitários e **100% de Code Coverage**
 - [x] (opcional) Uso de TDD do início ao fim do projeto

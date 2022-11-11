@@ -12,4 +12,8 @@ Test Data Builder com Mother Objects: Aplicado nos testes para padronizar os dad
 
 Fluent API: Apesar de não haver no momento uma fluent api construída por mim, a fluent api de expect do jest é utilizada nos testes.
 
+Factory: Factories foram usadas nos testes unitários dos use cases para gerar os objetos de use cases. Para gerar um objeto de use case é necessário construir as instâncias das dependências e injetá-las no use case.
+
+Dependency Injection: Técnica utilizada nos use cases para diminuir o acoplamento, aumentar a coesão e facilitar a construção dos testes unitários.
+
 > Nota do Wells: Se precisar de qualquer ajuda com a formatação desse arquivo MARKDOWN (.md) aqui, dá uma olhada na [documentação oficial do GitHub][gitmd] pra isso que pode ajudar :)

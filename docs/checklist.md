@@ -24,8 +24,8 @@ Wallets
 Payment Components
 
 - [x] Payment with Boleto
-- [] Payment with Credit Card
-- [] Payment with Pix
+- [x] Payment with Credit Card
+- [x] Payment with Pix
 
 Queue Components
 
