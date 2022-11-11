@@ -95,4 +95,24 @@ describe('Use Cases - Pay with pix', () => {
 
     expect(payWithPixSpy).toHaveBeenCalledWith(expectedArguments);
   });
+
+  it('should throw if payWithPix throws', async () => {
+    const { sut, paymentComponentStub } = makeSut();
+
+    jest
+      .spyOn(paymentComponentStub, 'payWithPix')
+      .mockRejectedValueOnce(new Error());
+
+    const { customerName, productList } = PixDTODataMother.valid();
+
+    const userId = '1234';
+
+    const promise = sut.execute({
+      userId,
+      customerName,
+      productList,
+    });
+
+    await expect(promise).rejects.toThrowError();
+  });
 });
